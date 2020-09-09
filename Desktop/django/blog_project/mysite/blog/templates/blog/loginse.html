@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<p>hai</p>
+<div class="jumbotron">
+  <h1>please login here</h1>
+  <form action="{% url 'loginse' %}" method="post">
+    {% csrf_token %}
+    <label for="username">Enter username:</label>
+    <input type="text" name="username" placeholder="username"><br>
+
+    <label for="password">Enter Password:</label>
+    <input type="password" name="password" placeholder="Enter password">
+
+    <input type="submit" value="login">
+
+    </form>
+  </div>
+{% endblock %}

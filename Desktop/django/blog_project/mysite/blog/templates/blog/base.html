@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!--medium Style editor-->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{%static 'css/blog.css' %}">
+    <!--Fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Russo+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+    <div class="container">
+      <ul class="navbar-nav mr-auto">
+      <li><a class="navbar-brand bigbrand" href="{% url 'blog:post_list' %}">MyBlog</a></li>
+      <li><a class ="nav-link" href="{% url 'blog:about' %}">About</a></li>
+      <li><a class ="nav-link" href="https://www.github.com">Github</a></li>
+      <li><a class ="nav-link" href="https://linkedin.com">Linkedin</a></li>
+
+    </ul>
+    <!--<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">-->
+
+
+
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+      <li>
+        <a class="nav-link" href="{% url "blog:post_new" %}">New Post</a>
+      </li>
+
+      <li>
+        <a class="nav-link" href="{% url "blog:post_draft_list" %}">Drafts</a>
+      </li>
+
+      <li>
+        <a class="nav-link" href="{% url "logout" %}">Log Out</a>
+      </li>
+
+      <li>
+         <a class="nav-link">Welcome:{{user.username}}</a>
+      </li>
+        {% else %}
+        <li>
+          <a class="nav-link" href="{% url 'loginse' %}"><span class='glyphicon glyphicon-user'>Login</span></a>
+        </li>
+      {% endif %}
+
+    </ul>
+
+    </div>
+<!--  </div>-->
+
+  </nav>
+
+  <div class="content container">
+    <!-- <div class="row">
+      <div class="col-md-8">
+        <div class="blog_posts"> -->
+          {% block content %}
+          {% endblock %}
+
+        <!-- </div>
+</div>
+</div> -->
+
+  </div>
+  </body>
+</html>
